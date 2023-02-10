@@ -33,6 +33,7 @@ class RobotClient {
         std::vector<Transform> additional_transforms = std::vector<Transform>());
     std::vector<Status> get_status(
         std::vector<ResourceName> components = std::vector<ResourceName>());
+    ViamChannel viam_channel;
 
    private:
     void stop_all();
@@ -44,7 +45,6 @@ class RobotClient {
     unsigned int refresh_interval;
     bool should_close_channel;
     std::shared_ptr<Channel> channel;
-    ViamChannel viam_channel;
     std::mutex lock;
     std::vector<ResourceName> resource_names_;
     ResourceManager resource_manager;

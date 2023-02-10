@@ -175,6 +175,8 @@ void RobotClient::refresh() {
         BOOST_LOG_TRIVIAL(error) << "Error getting resource names: " << response.error_message();
     }
 
+    return;
+
     ResourceManager new_resource_manager;
     RepeatedPtrField<ResourceName> resources = resp.resources();
 
@@ -192,12 +194,20 @@ void RobotClient::refresh() {
         }
 
         try {
-            ComponentBase rpc_client =
-                Registry::lookup(name.subtype()).create_rpc_client(name.name(), channel);
+            std::cout << "Creating rpc client" << std::endl;
+            ComponentRegistration cr = Registry::lookup(name.subtype());
+            std::cout << "Creating rpc client1" << std::endl;
+            ComponentBase rpc_client = cr.create_rpc_client(name.name(), channel);
+
+            // ComponentBase rpc_client =
+            // Registry::lookup(name.subtype()).create_rpc_client(name.name(), channel);
+            std::cout << "Creating rpc client2" << std::endl;
             new_resource_manager.register_component(rpc_client);
         } catch (std::exception& exc) {
             BOOST_LOG_TRIVIAL(debug)
                 << "Error registering component " << name.subtype() << ": " << exc.what();
+            // CR erodkin: boo
+            return;
         }
     }
     bool is_equal = current_resources.size() == resource_names_.size();
@@ -248,7 +258,7 @@ std::shared_ptr<RobotClient> RobotClient::with_channel(ViamChannel channel, Opti
         t.detach();
     };
 
-    robot->refresh();
+    // robot->refresh();
     return robot;
 };
 
