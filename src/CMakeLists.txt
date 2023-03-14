@@ -120,13 +120,6 @@ if (VIAMCPPSDK_USE_DYNAMIC_PROTOS)
     ${PROTO_GEN_DIR}/gen/tagger/v1/tagger.pb.cc
     ${PROTO_GEN_DIR}/gen/tagger/v1/tagger.pb.h
 
-    # These are needed for `echo` example, which is awkward. These can
-    # probably be removed if that example is pulled.
-    ${PROTO_GEN_DIR}/gen/proto/rpc/examples/echo/v1/echo.grpc.pb.cc
-    ${PROTO_GEN_DIR}/gen/proto/rpc/examples/echo/v1/echo.grpc.pb.h
-    ${PROTO_GEN_DIR}/gen/proto/rpc/examples/echo/v1/echo.pb.cc
-    ${PROTO_GEN_DIR}/gen/proto/rpc/examples/echo/v1/echo.pb.h
-
     COMMAND ${BUF_COMMAND} generate buf.build/viamrobotics/goutils --template buf.gen.yaml
     COMMAND ${BUF_COMMAND} generate buf.build/googleapis/googleapis --template buf.gen.yaml --path google/rpc --path google/api
     COMMAND ${BUF_COMMAND} generate buf.build/viamrobotics/api --template buf.gen.yaml --path common,component,robot,service,module,tagger,app/v1

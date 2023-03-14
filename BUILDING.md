@@ -344,9 +344,9 @@ installation when running commands that require it:
 ``` shell
 cmake ...
 ninja install
-./build/install/bin/example_echo    # FAILS: libviam_rust_utils not found
+./build/install/bin/example_dial    # FAILS: libviam_rust_utils not found
 export DYLD_LIBRRAY_PATH=./build/install/lib
-./build/install/bin/example_echo    # OK!
+./build/install/bin/example_dial    # OK!
 ```
 
 ## Getting Help

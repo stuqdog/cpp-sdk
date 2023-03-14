@@ -41,22 +41,6 @@ packages.
 Instructions for running examples follows. More robust instructions
 for setting up a project to come.
 
-### Echo Streaming Example
-The echo example communicates with the goutils sample server. It
-demonstrates individual, streamed, and bidirectional communication. To
-test, navigate to your goutils clone and run
-
-``` shell
-go run rpc/examples/echo/server/cmd/main.go
-```
-
-Then, run the `example_echo` program (it will be in the `bin`
-directory of your SDK installation)
-
-``` shell
-ninja install && ./build/install/bin/example_echo
-```
-
 ### Dial Example
 
 If you are connecting to a robot with authentication you will need to
